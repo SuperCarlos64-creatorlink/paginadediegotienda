@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LIGHTS STREET - Perfumes</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#000;color:#fff;padding:20px}
+header{text-align:center} header img{width:130px;border-radius:15px}
+header h1{font-size:32px} header h1 span{color:#e60000} header p{color:#aaa}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;max-width:800px;margin:20px auto}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+.card{background:#111;border:1px solid #333;border-radius:18px;overflow:hidden;cursor:pointer}
+.card:hover{border-color:#e60000}
+.card img{width:100%;height:280px;object-fit:cover}
+.card-info{padding:15px} .card-info p{color:#aaa;font-size:13px;margin:5px 0}
+.precio{color:#00ff88;font-weight:bold;font-size:20px}
+.btn{background:#e60000;text-align:center;padding:10px;border-radius:10px;margin-top:10px;font-weight:bold}
+.detalle{display:none;max-width:800px;margin:20px auto;background:#111;border:2px solid #e60000;border-radius:18px;padding:20px}
+.detalle img{width:100%;max-height:350px;object-fit:cover;border-radius:12px}
+.detalle ul{list-style:none;margin:15px 0;line-height:2;color:#ddd}
+.volver{background:#333;color:#fff;border:none;padding:10px 18px;border-radius:10px;cursor:pointer;margin-bottom:10px}
+.comprar{display:block;text-align:center;background:#25D366;color:#000;padding:13px;border-radius:10px;font-weight:bold;text-decoration:none;margin-top:10px}
+footer{max-width:800px;margin:30px auto 0;background:#111;border-radius:15px;padding:20px;text-align:center;line-height:2}
+footer a{color:#fff} footer b{color:#e60000}
+</style>
+</head>
+<body>
+<header>
+  <img src="https://files.catbox.moe/bef0di.jpeg">
+  <h1>LIGHTS <span>STREET</span></h1>
+  <p>Perfumes 1.1 - Calidad Premium</p>
+</header>
+
+<div class="grid" id="lista">
+  <div class="card" onclick="ver('santal')">
+    <img src="https://files.catbox.moe/k42so9.jpeg">
+    <div class="card-info">
+      <h2>Santal 33 - Le Labo</h2>
+      <p>Olor fresco • Calidad 1.1 • 100ml</p>
+      <div class="precio" id="p-santal">$650 MXN</div>
+      <div class="btn">VER CARACTERÍSTICAS →</div>
+    </div>
+  </div>
+  <div class="card" onclick="ver('art')">
+    <img src="https://files.catbox.moe/kagqgg.jpeg">
+    <div class="card-info">
+      <h2>Art of Universe - Lattafa</h2>
+      <p>Olor dulce, fresco • Calidad 1.1 • 100ml</p>
+      <div class="precio" id="p-art">$650 MXN</div>
+      <div class="btn">VER CARACTERÍSTICAS →</div>
+    </div>
+  </div>
+</div>
+
+<div class="detalle" id="detalle-santal">
+  <button class="volver" onclick="volver()">← Regresar</button>
+  <img src="https://files.catbox.moe/k42so9.jpeg">
+  <h2>Santal 33 - Le Labo</h2>
+  <p>Elegante, limpio y fresco. Ideal para diario y para salir.</p>
+  <ul>
+    <li><b>Marca:</b> Le Labo</li>
+    <li><b>Nombre:</b> Santal 33</li>
+    <li><b>Olor:</b> Fresco</li>
+    <li><b>Calidad:</b> 1.1 (Réplica Premium)</li>
+    <li><b>Contenido:</b> 100ml / 3.4 FL.OZ.</li>
+    <li><b>Tipo:</b> Eau de Parfum / Natural Spray</li>
+    <li><b>Duración:</b> 8 a 10 horas aprox.</li>
+    <li><b>Para:</b> Hombre y Mujer (Unisex)</li>
+    <li><b>Precio:</b> <span id="d-santal">$650 MXN</span></li>
+  </ul>
+  <a class="comprar" id="w-santal" href="https://wa.me/5219516129431?text=Hola, quiero el Santal 33" target="_blank">PEDIR POR WHATSAPP</a>
+</div>
+
+<div class="detalle" id="detalle-art">
+  <button class="volver" onclick="volver()">← Regresar</button>
+  <img src="https://files.catbox.moe/kagqgg.jpeg">
+  <h2>Art of Universe - Lattafa Pride</h2>
+  <p>Dulce y fresco, con presentación de lujo. Huele caro.</p>
+  <ul>
+    <li><b>Marca:</b> Lattafa Pride</li>
+    <li><b>Nombre:</b> Art of Universe</li>
+    <li><b>Olor:</b> Dulce, fresco</li>
+    <li><b>Calidad:</b> 1.1 (Réplica Premium)</li>
+    <li><b>Contenido:</b> 100ml / 3.4 FL.OZ.</li>
+    <li><b>Tipo:</b> Eau de Parfum / Vaporizador</li>
+    <li><b>Duración:</b> 8 a 10 horas aprox.</li>
+    <li><b>Para:</b> Hombre y Mujer (Unisex)</li>
+    <li><b>Presentación:</b> Caja azul de lujo</li>
+    <li><b>Precio:</b> <span id="d-art">$650 MXN</span></li>
+  </ul>
+  <a class="comprar" id="w-art" href="https://wa.me/5219516129431?text=Hola, quiero el Art of Universe" target="_blank">PEDIR POR WHATSAPP</a>
+</div>
+
+<footer>
+  <b>CONTACTO LIGHTS STREET</b><br>
+  📱 WhatsApp: <a href="https://wa.me/5219516129431">951 612 94 31</a><br>
+  📞 Llamadas: 951 720 12 19<br>
+  📸 Instagram: <a href="https://instagram.com/lights.street1">@lights.street1</a><br>
+  🎵 TikTok: <a href="https://tiktok.com/@lights.street1">@lights.street1</a><br>
+  👥 <a href="https://chat.whatsapp.com/FQb5sguSHPy85BFPTDjRKl?s=cl&p=i&iam=2">Unirse al grupo de WhatsApp</a><br>
+  <a href="index.html">Entrar como Admin</a>
+</footer>
+
+<script>
+// Aquí lee el precio que cambiaste en el login, sin servidor
+let precios = JSON.parse(localStorage.getItem("precios-lights") || '{"santal":650,"art":650}');
+document.getElementById("p-santal").innerText = "$" + precios.santal + " MXN";
+document.getElementById("p-art").innerText = "$" + precios.art + " MXN";
+document.getElementById("d-santal").innerText = "$" + precios.santal + " MXN";
+document.getElementById("d-art").innerText = "$" + precios.art + " MXN";
+document.getElementById("w-santal").href = "https://wa.me/5219516129431?text=Hola, quiero el Santal 33 $" + precios.santal;
+document.getElementById("w-art").href = "https://wa.me/5219516129431?text=Hola, quiero el Art of Universe $" + precios.art;
+
+function ver(cual){
+  document.getElementById("lista").style.display="none";
+  document.getElementById("detalle-"+cual).style.display="block";
+  window.scrollTo(0,0);
+}
+function volver(){
+  document.getElementById("lista").style.display="grid";
+  document.getElementById("detalle-santal").style.display="none";
+  document.getElementById("detalle-art").style.display="none";
+}
+</script>
+</body>
+</html>
