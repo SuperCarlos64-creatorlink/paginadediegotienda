@@ -3,256 +3,195 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LIGHTS STREET - Perfumes Premium 1.1</title>
+<title>LIGHTS STREET</title>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
-body{background:#0a0a0a;color:#fff}
-a{color:#fff;text-decoration:none}
-.topbar{background:#e60000;text-align:center;padding:8px;font-size:13px;font-weight:bold;letter-spacing:1px}
-.topbar span{color:#ffe600}
-header{position:sticky;top:0;z-index:50;background:rgba(10,10,10,.95);backdrop-filter:blur(10px);border-bottom:1px solid #222;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;max-width:1100px;margin:auto}
-.logo{display:flex;align-items:center;gap:12px}
-.logo img{width:48px;height:48px;object-fit:cover;border-radius:12px;border:2px solid #e60000}
-.logo h1{font-size:22px;letter-spacing:2px;line-height:1} .logo h1 span{color:#e60000}
-.logo small{color:#aaa;font-size:11px;letter-spacing:1px}
-.btn-cart{background:#e60000;border:none;color:#fff;padding:10px 16px;border-radius:999px;font-weight:bold;cursor:pointer;position:relative}
-.btn-cart span{background:#fff;color:#000;font-size:12px;padding:2px 7px;border-radius:999px;margin-left:5px}
-.hero{max-width:1100px;margin:20px auto;padding:0 20px;display:flex;gap:20px;align-items:center;background:linear-gradient(135deg,#1a0000,#111);border:1px solid #2a2a2a;border-radius:20px;overflow:hidden}
-.hero-text{padding:28px;flex:1}
-.hero-text .badge{background:#e60000;padding:5px 10px;border-radius:999px;font-size:11px;font-weight:bold;letter-spacing:1px}
-.hero-text h2{font-size:34px;margin:14px 0 8px;line-height:1.1} .hero-text h2 span{color:#e60000}
-.hero-text p{color:#bbb;line-height:1.5;font-size:14px}
-.hero-stats{display:flex;gap:18px;margin-top:16px} .hero-stats b{font-size:18px} .hero-stats small{color:#888;display:block}
-.hero img{width:340px;height:260px;object-fit:cover}
-@media(max-width:750px){.hero{flex-direction:column}.hero img{width:100%;height:220px}}
-.controls{max-width:1100px;margin:20px auto;padding:0 20px;display:flex;gap:10px;flex-wrap:wrap}
-.controls input{flex:1;min-width:200px;padding:13px;border-radius:999px;border:1px solid #333;background:#151515;color:#fff;outline:none}
-.controls select{padding:13px;border-radius:999px;border:1px solid #333;background:#151515;color:#fff}
-.controls .count{padding:13px;color:#aaa;font-size:13px}
-.grid{max-width:1100px;margin:0 auto;padding:0 20px 30px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
-@media(max-width:650px){.grid{grid-template-columns:1fr}}
-.card{background:#131313;border:1px solid #262626;border-radius:20px;overflow:hidden;transition:.2s;cursor:pointer}
-.card:hover{transform:translateY(-3px);border-color:#e60000;box-shadow:0 10px 30px #e6000040}
-.card-img{position:relative} .card-img img{width:100%;height:290px;object-fit:cover;display:block}
-.etiqueta{position:absolute;top:12px;left:12px;background:#e60000;padding:5px 10px;border-radius:999px;font-size:11px;font-weight:bold}
-.etiqueta.verde{background:#00c853}
-.card-info{padding:16px}
-.card-info .marca{color:#e60000;font-size:11px;font-weight:bold;letter-spacing:1.5px}
-.card-info h3{font-size:20px;margin:5px 0}
-.card-info p{color:#aaa;font-size:13px;line-height:1.5}
-.estrellas{color:#ffc107;font-size:13px;margin:8px 0}
-.precio-row{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
-.precio{font-size:22px;font-weight:bold;color:#00ff88} .precio small{color:#888;font-size:12px;text-decoration:line-through;margin-left:5px}
-.btns{display:flex;gap:8px;margin-top:12px}
-.btn-ver{flex:1;background:#222;color:#fff;border:none;padding:11px;border-radius:12px;cursor:pointer;font-weight:bold}
-.btn-add{flex:1.3;background:#e60000;color:#fff;border:none;padding:11px;border-radius:12px;cursor:pointer;font-weight:bold}
-.detalle{display:none;max-width:900px;margin:0 auto 30px;padding:0 20px}
-.detalle-box{background:#131313;border:2px solid #e60000;border-radius:20px;padding:20px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
-@media(max-width:650px){.detalle-box{grid-template-columns:1fr}}
-.detalle-box img{width:100%;height:360px;object-fit:cover;border-radius:14px}
-.detalle-box ul{list-style:none;margin:14px 0;line-height:2;color:#ddd;font-size:14px}
-.detalle-box ul b{color:#fff}
-.volver{background:#333;color:#fff;border:none;padding:10px 16px;border-radius:999px;cursor:pointer;margin-bottom:12px}
-.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:90}
-.carrito{position:fixed;top:0;right:-100%;width:100%;max-width:400px;height:100vh;background:#111;z-index:100;transition:.3s;display:flex;flex-direction:column;border-left:2px solid #e60000}
-.carrito.open{right:0}
-.carrito-head{padding:18px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #222}
-.carrito-head button{background:#222;color:#fff;border:none;padding:8px 12px;border-radius:999px;cursor:pointer}
-.carrito-body{flex:1;overflow:auto;padding:16px}
-.cart-item{display:flex;gap:12px;background:#1a1a1a;border-radius:14px;padding:10px;margin-bottom:10px;align-items:center}
-.cart-item img{width:60px;height:60px;object-fit:cover;border-radius:10px}
-.cart-item b{font-size:14px} .cart-item small{color:#aaa}
-.qty{display:flex;align-items:center;gap:8px;margin-top:6px} .qty button{background:#333;color:#fff;border:none;width:26px;height:26px;border-radius:999px;cursor:pointer}
-.cart-empty{text-align:center;color:#888;padding:40px 0;line-height:1.8}
-.carrito-foot{padding:16px;border-top:1px solid #222}
-.total{display:flex;justify-content:space-between;font-size:18px;font-weight:bold;margin-bottom:12px}
-.btn-wa{display:block;text-align:center;background:#25D366;color:#000;padding:14px;border-radius:12px;font-weight:bold}
-.btn-vaciar{display:block;text-align:center;background:transparent;color:#ff5555;padding:10px;margin-top:8px;cursor:pointer;border:none;width:100%}
-footer{max-width:1100px;margin:0 auto 30px;padding:20px;background:#111;border-radius:18px;text-align:center;line-height:2}
-footer b{color:#e60000}
-footer a{color:#fff}
-.badges{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:10px}
-.badges span{background:#1a1a1a;border:1px solid #333;padding:6px 12px;border-radius:999px;font-size:12px}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#000;color:#fff;overflow:hidden}
+button{cursor:pointer}
+/* PANTALLA 1 - EFECTO */
+#pantalla-efecto{position:fixed;inset:0;z-index:100;overflow:hidden;background:#000;display:block}
+#fondo-wrap{position:absolute;top:-60px;left:-60px;right:-60px;bottom:-60px;will-change:transform}
+#fondo-wrap img{width:100%;height:100%;object-fit:cover;display:block}
+#niebla{position:absolute;inset:0;background:radial-gradient(ellipse at bottom, rgba(255,255,255,.22), transparent 60%);animation:niebla 5s ease-in-out infinite alternate;pointer-events:none;z-index:2}
+@keyframes niebla{from{opacity:.5;transform:translateX(-15px)}to{opacity:1;transform:translateX(15px)}}
+#lluvia{position:absolute;inset:0;pointer-events:none;z-index:3}
+.flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:4}
+.murcielago{position:absolute;font-size:30px;animation:volar linear infinite;z-index:5}
+@keyframes volar{from{left:-10%}to{left:110%}}
+#texto-efecto{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;z-index:6;width:100%;padding:20px}
+#texto-efecto img{width:130px;height:130px;object-fit:cover;border-radius:50%;border:3px solid #fff;box-shadow:0 0 40px #00bfff;background:#000}
+#texto-efecto h1{font-size:40px;letter-spacing:2px;text-shadow:0 0 20px #000,0 0 40px #00bfff;margin-top:10px}
+#texto-efecto h1 span{color:#00bfff}
+#texto-efecto p{letter-spacing:3px;font-weight:bold;color:#fff;text-shadow:0 0 10px #000;margin-top:5px}
+#btn-entrar-efecto{margin-top:22px;background:#fff;color:#000;border:none;padding:16px 30px;border-radius:999px;font-weight:bold;font-size:17px;box-shadow:0 0 25px #00bfff}
+/* APP */
+#pantalla-app{display:none;position:fixed;inset:0;z-index:20;overflow-y:auto;background:#000}
+.contenido{max-width:480px;margin:0 auto;padding:20px;position:relative;z-index:5}
+.logo{width:110px;height:110px;object-fit:cover;border-radius:50%;border:3px solid #00bfff;display:block;margin:20px auto 10px;box-shadow:0 0 30px #00bfff}
+.card{background:rgba(5,20,35,.95);border:1px solid #00bfff55;border-radius:20px;padding:20px;margin-bottom:15px}
+.card h2{color:#00bfff;margin-bottom:10px}
+.card p{line-height:1.6;color:#ddd;font-size:15px}
+.btn{display:block;width:100%;padding:15px;border-radius:999px;text-align:center;font-weight:bold;text-decoration:none;margin-top:10px;border:none;font-size:16px}
+.btn-azul{background:#00bfff;color:#000}
+.btn-verde{background:#25D366;color:#000}
+.btn-blanco{background:#fff;color:#000}
+.prod{background:#111;border-radius:18px;padding:12px;margin-bottom:14px;border:1px solid #222}
+.prod img{width:100%;height:220px;object-fit:cover;border-radius:14px;background:#222}
+.prod h3{margin:10px 0 4px;font-size:19px}
+.prod p{color:#aaa;font-size:14px}
+.prod .precio{color:#00ff88;font-weight:bold;font-size:20px;margin:8px 0}
+.tags span{background:#222;border:1px solid #333;padding:5px 10px;border-radius:999px;font-size:12px;color:#ddd;margin-right:5px}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:200;justify-content:center;align-items:center;padding:20px}
+.modal.open{display:flex}
+.caja{background:#0a1a2a;border:2px solid #00bfff;border-radius:20px;padding:25px;width:100%;max-width:380px}
+.caja input{width:100%;padding:13px;border-radius:10px;border:1px solid #333;background:#111;color:#fff;margin-bottom:12px;outline:none}
+.caja button{width:100%;padding:13px;background:#00bfff;color:#000;border:none;border-radius:10px;font-weight:bold}
+#codigo-box{display:none}
+#tienda{display:none}
 </style>
 </head>
 <body>
 
-<div class="topbar">🔥 ENVÍOS A TODO OAXACA <span>• CALIDAD 1.1 • $650 MXN</span></div>
-
-<header>
-  <a href="tienda.html" class="logo">
+<!-- PANTALLA 1 - SOLO EFECTO - ESTO ES LO PRIMERO QUE SE VE -->
+<div id="pantalla-efecto">
+  <div id="fondo-wrap"><img src="https://files.catbox.moe/k42so9.jpeg"></div>
+  <div id="niebla"></div>
+  <canvas id="lluvia"></canvas>
+  <div class="flash" id="flash"></div>
+  <span class="murcielago" style="top:15%;animation-duration:9s">🦇</span>
+  <span class="murcielago" style="top:25%;animation-duration:12s;animation-delay:2s;font-size:20px">🦇</span>
+  <span class="murcielago" style="top:10%;animation-duration:8s;animation-delay:4s;font-size:22px">🦇</span>
+  <span class="murcielago" style="top:35%;animation-duration:14s;animation-delay:1s;font-size:18px">🦇</span>
+  <div id="texto-efecto">
     <img src="https://files.catbox.moe/bef0di.jpeg">
-    <div><h1>LIGHTS <span>STREET</span></h1><small>PERFUMES PREMIUM</small></div>
-  </a>
-  <div>
-    <button class="btn-cart" onclick="abrirCarrito()">🛒 Carrito <span id="cart-count">0</span></button>
+    <h1>🦈 LIGHTS <span>STREET</span></h1>
+    <p>ESTILO QUE TE DISTINGUE 🔥</p>
+    <button id="btn-entrar-efecto" onclick="irALogin()">ENTRAR →</button>
   </div>
-</header>
+  <p style="position:absolute;bottom:18px;width:100%;text-align:center;font-size:12px;color:#ddd;z-index:6">TOCA ENTRAR PARA SEGUIR</p>
+</div>
 
-<div class="hero">
-  <div class="hero-text">
-    <span class="badge">NUEVO • CALIDAD 1.1</span>
-    <h2>Huele caro,<br><span>sin pagar caro.</span></h2>
-    <p>Perfumes réplica premium 1.1 con duración de 8 a 10 horas. Los favoritos de Lights Street, al mejor precio.</p>
-    <div class="hero-stats">
-      <div><b>100ml</b><small>Contenido</small></div>
-      <div><b>8-10 hrs</b><small>Duración</small></div>
-      <div><b>1.1</b><small>Calidad</small></div>
+<!-- PANTALLA 2 Y 3 -->
+<div id="pantalla-app">
+  <div class="contenido">
+    <div id="bienvenida" style="display:none;text-align:center">
+      <img src="https://files.catbox.moe/bef0di.jpeg" class="logo">
+      <h1 style="font-size:28px">🦈 LIGHTS <span style="color:#00bfff">STREET</span></h1>
+      <div class="card" style="text-align:center">
+        <h2 id="saludo" style="color:#00ff88"></h2>
+        <p>Ya creaste tu usurio 🔥</p>
+        <button class="btn btn-azul" onclick="mostrarTienda()">🛍️ IR A TIENDA →</button>
+      </div>
+    </div>
+    <div id="login-pantalla">
+      <img src="https://files.catbox.moe/bef0di.jpeg" class="logo">
+      <h1 style="text-align:center;font-size:28px">🦈 LIGHTS <span style="color:#00bfff">STREET</span></h1>
+      <p style="text-align:center;color:#00bfff;font-weight:bold;margin:5px 0 15px">ESTILO QUE TE DISTINGUE</p>
+      <div class="card" style="text-align:center">
+        <p>Bienvenidos a Lights Street, tu tienda donde el estilo, la calidad y los buenos precios se encuentran.<br><br><b style="color:#fff">🔥 No se trata solo de vestir bien, sino de destacar.</b><br><br><b style="color:#00bfff">Tu estilo, tus reglas.</b></p>
+        <button class="btn btn-azul" onclick="abrirLogin()">🔐 INICIAR SESIÓN</button>
+      </div>
+      <div class="card"><h2>📲 CONTACTO</h2><p>💬 WhatsApp: <b>951 612 94 31</b><br>📞 Llamadas: <b>951 720 12 19</b><br>📸 Instagram: <b>@lights.street1</b><br>🎵 TikTok: <b>@lights.street1</b></p></div>
+      <button class="btn btn-blanco" onclick="verEfectoDeNuevo()">← VER EFECTO DE NUEVO</button>
+    </div>
+    <div id="tienda">
+      <h2 style="text-align:center;margin:10px 0">🛍️ TIENDA LIGHTS STREET</h2>
+      <div class="card">
+        <h2>🔥 NUESTROS PRODUCTOS</h2>
+        <div class="prod">
+          <img src="https://files.catbox.moe/k42so9.jpeg">
+          <h3>Santal 33</h3>
+          <div><span class="tags"><span>✨ Fresco</span><span>📦 1.1</span></span></div>
+          <p>Fresco, elegante y que deja huella.</p>
+          <div class="precio">$650 MXN</div>
+          <a class="btn btn-verde" href="https://wa.me/5219516129431?text=Hola%20quiero%20el%20Santal%2033%20$650" target="_blank">🛒 COMPRAR SANTAL 33</a>
+        </div>
+        <div class="prod">
+          <img src="https://files.catbox.moe/kagqgg.jpeg">
+          <h3>Art of Universe</h3>
+          <div><span class="tags"><span>🍬 Dulce</span><span>✨ Fresco</span><span>📦 1.1</span></span></div>
+          <p>Dulce y fresco a la vez. Perfecto para destacar.</p>
+          <div class="precio">$650 MXN</div>
+          <a class="btn btn-verde" href="https://wa.me/5219516129431?text=Hola%20quiero%20el%20Art%20of%20Universe%20$650" target="_blank">🛒 COMPRAR ART OF UNIVERSE</a>
+        </div>
+      </div>
+      <div class="card" style="border-color:#00ff88;text-align:center"><h2 style="color:#00ff88">🎉 15% DE DESCUENTO PARA LOS DEL GRUPO</h2><p>Únete y recibe 15% en toda la tienda.</p><a class="btn btn-verde" href="https://chat.whatsapp.com/FQb5sguSHPy85BFPTDjRKl?s=cl&p=i&iam=2" target="_blank">👥 UNIRME AL GRUPO - 15% OFF</a></div>
+      <div class="card"><h2>🚚 ENVÍOS Y PAGOS</h2><p>📦 <b>Envíos a todo México</b><br>💵 <b>Pago en efectivo</b><br>🏦 <b>Pago por transferencia</b></p></div>
+      <div class="card"><h2>📲 SÍGUENOS</h2><p>📸 Instagram: <b>@lights.street1</b><br>🎵 TikTok: <b>@lights.street1</b><br>💬 WhatsApp: <b>951 612 94 31</b><br>📞 Llamadas: <b>951 720 12 19</b></p></div>
+      <button class="btn btn-blanco" onclick="volverBienvenida()">← VOLVER</button>
+      <button class="btn btn-blanco" onclick="cerrarSesion()">Cerrar sesión</button>
     </div>
   </div>
-  <img src="https://files.catbox.moe/kagqgg.jpeg">
 </div>
 
-<div class="controls">
-  <input id="buscar" placeholder="🔍 Buscar perfume... Ej: Santal, Art..." oninput="render()">
-  <select id="filtro" onchange="render()">
-    <option value="todos">Todos los olores</option>
-    <option value="Fresco">Fresco</option>
-    <option value="Dulce">Dulce</option>
-  </select>
-  <select id="orden" onchange="render()">
-    <option value="destacado">Destacados</option>
-    <option value="menor">Precio: menor a mayor</option>
-    <option value="mayor">Precio: mayor a menor</option>
-  </select>
-  <div class="count" id="count"></div>
-</div>
-
-<div class="grid" id="lista"></div>
-
-<div class="detalle" id="detalle-box">
-  <button class="volver" onclick="cerrarDetalle()">← Regresar a la tienda</button>
-  <div class="detalle-box" id="detalle-content"></div>
-</div>
-
-<footer>
-  <b>CONTACTO LIGHTS STREET</b><br>
-  📱 WhatsApp: <a href="https://wa.me/5219516129431">951 612 94 31</a> &nbsp;|&nbsp; 📞 Llamadas: 951 720 12 19<br>
-  📸 Instagram: <a href="https://instagram.com/lights.street1">@lights.street1</a> &nbsp;|&nbsp; 🎵 TikTok: <a href="https://tiktok.com/@lights.street1">@lights.street1</a><br>
-  👥 <a href="https://chat.whatsapp.com/FQb5sguSHPy85BFPTDjRKl?s=cl&p=i&iam=2">Unirse al grupo de WhatsApp →</a>
-  <div class="badges"><span>✅ Calidad 1.1</span><span>🚚 Entrega rápida</span><span>💬 Pedido por WhatsApp</span></div>
-</footer>
-
-<div class="overlay" id="overlay" onclick="cerrarCarrito()"></div>
-<div class="carrito" id="carrito">
-  <div class="carrito-head"><h3>🛒 Tu carrito</h3><button onclick="cerrarCarrito()">✕</button></div>
-  <div class="carrito-body" id="cart-items"></div>
-  <div class="carrito-foot">
-    <div class="total"><span>Total:</span><span id="cart-total">$0 MXN</span></div>
-    <a class="btn-wa" id="btn-wa" href="#" target="_blank">PEDIR TODO POR WHATSAPP →</a>
-    <button class="btn-vaciar" onclick="vaciar()">Vaciar carrito</button>
+<div class="modal" id="modal">
+  <div class="caja">
+    <h2 style="text-align:center">🔐 Iniciar Sesión</h2>
+    <p style="text-align:center;margin:8px 0 15px;color:#aaa">Te mandamos código a tu Gmail</p>
+    <input id="nombre" placeholder="Tu nombre">
+    <input id="gmail" placeholder="Tu Gmail">
+    <button id="btn-enviar" onclick="enviarCodigo()">ENVIAR CÓDIGO</button>
+    <div id="codigo-box" style="margin-top:15px">
+      <input id="codigo-input" placeholder="Código de 6 dígitos" maxlength="6">
+      <p id="codigo-demo" style="color:#ffe600;font-size:13px;margin-bottom:10px"></p>
+      <button style="background:#00ff88" onclick="verificar()">VERIFICAR Y ENTRAR</button>
+    </div>
+    <p id="error" style="color:#ff4444;display:none;text-align:center;margin-top:10px">Código incorrecto</p>
+    <small onclick="cerrarLogin()" style="display:block;text-align:center;margin-top:12px;cursor:pointer;color:#888">Cerrar</small>
   </div>
 </div>
 
 <script>
-let precios = JSON.parse(localStorage.getItem("precios-lights") || '{"santal":650,"art":650}');
-let productos = [
-  {id:"santal", marca:"LE LABO", nombre:"Santal 33", olor:"Fresco", calidad:"1.1", ml:"100ml", foto:"https://files.catbox.moe/k42so9.jpeg", desc:"Elegante, limpio y fresco. El perfume que huele a lujo, ideal para diario y para salir.", etiqueta:"MÁS VENDIDO", precio:precios.santal, precioAntes:950, rating:"★★★★★ (128)"},
-  {id:"art", marca:"LATTAFA PRIDE", nombre:"Art of Universe", olor:"Dulce, fresco", calidad:"1.1", ml:"100ml", foto:"https://files.catbox.moe/kagqgg.jpeg", desc:"Dulce y fresco, con presentación de lujo en caja azul. Huele caro, dura todo el día.", etiqueta:"NUEVO", precio:precios.art, precioAntes:950, rating:"★★★★★ (96)"}
-];
-let carrito = JSON.parse(localStorage.getItem("carrito-lights") || "[]");
-function render(){
-  let q = document.getElementById("buscar").value.toLowerCase();
-  let f = document.getElementById("filtro").value;
-  let o = document.getElementById("orden").value;
-  let lista = productos.filter(p=>{
-    let okBusca = (p.nombre+" "+p.marca+" "+p.olor).toLowerCase().includes(q);
-    let okFiltro = f==="todos" || p.olor.includes(f);
-    return okBusca && okFiltro;
-  });
-  if(o==="menor") lista.sort((a,b)=>a.precio-b.precio);
-  if(o==="mayor") lista.sort((a,b)=>b.precio-a.precio);
-  document.getElementById("count").innerText = lista.length + " productos";
-  document.getElementById("lista").innerHTML = lista.map(p=>`
-    <div class="card">
-      <div class="card-img" onclick="ver('${p.id}')">
-        <img src="${p.foto}">
-        <span class="etiqueta ${p.id==='art'?'verde':''}">${p.etiqueta}</span>
-      </div>
-      <div class="card-info">
-        <div class="marca">${p.marca} • CALIDAD ${p.calidad}</div>
-        <h3>${p.nombre}</h3>
-        <p>${p.desc}</p>
-        <div class="estrellas">${p.rating}</div>
-        <div class="precio-row"><div class="precio">$${p.precio} MXN <small>$${p.precioAntes}</small></div><span style="color:#aaa;font-size:12px">${p.ml} • ${p.olor}</span></div>
-        <div class="btns">
-          <button class="btn-ver" onclick="ver('${p.id}')">Ver detalles</button>
-          <button class="btn-add" onclick="agregar('${p.id}')">+ Agregar</button>
-        </div>
-      </div>
-    </div>`).join("");
+const PUBLIC_KEY = "wJc4g7wLZb6LkC10Z";
+const SERVICE_ID = "service_Lightsstreet";
+const TEMPLATE_ID = "template_ievfd3h";
+
+// FONDO QUE SIGUE AL MOUSE - AHORA SI FUNCIONA
+let fondo = document.getElementById("fondo-wrap");
+let targetX=0, targetY=0, curX=0, curY=0;
+window.addEventListener("mousemove", e=>{ targetX=(e.clientX/window.innerWidth-0.5)*60; targetY=(e.clientY/window.innerHeight-0.5)*60; });
+window.addEventListener("touchmove", e=>{ targetX=(e.touches[0].clientX/window.innerWidth-0.5)*60; targetY=(e.touches[0].clientY/window.innerHeight-0.5)*60; },{passive:true});
+function animFondo(){ curX+=(targetX-curX)*0.07; curY+=(targetY-curY)*0.07; fondo.style.transform=`translate(${curX}px, ${curY}px) scale(1.15)`; requestAnimationFrame(animFondo); }
+animFondo();
+
+// Lluvia
+let canvas=document.getElementById("lluvia"); let ctx=canvas.getContext("2d");
+function resize(){ canvas.width=window.innerWidth; canvas.height=window.innerHeight; } resize(); window.addEventListener("resize",resize);
+let gotas=[]; for(let i=0;i<150;i++) gotas.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,l:Math.random()*15+10,v:Math.random()*12+8});
+function lluvia(){ ctx.clearRect(0,0,canvas.width,canvas.height); ctx.strokeStyle="rgba(255,255,255,.4)"; gotas.forEach(g=>{ ctx.beginPath(); ctx.moveTo(g.x,g.y); ctx.lineTo(g.x-3,g.y+g.l); ctx.stroke(); g.y+=g.v; if(g.y>canvas.height){g.y=-20; g.x=Math.random()*canvas.width;} }); requestAnimationFrame(lluvia); }
+lluvia();
+// Relampago
+setInterval(()=>{ let f=document.getElementById("flash"); if(Math.random()<0.7){ f.style.opacity=0.35; setTimeout(()=>f.style.opacity=0,120); setTimeout(()=>{f.style.opacity=0.2; setTimeout(()=>f.style.opacity=0,100)},200);} },3800);
+
+// FLUJO ARREGLADO: SIEMPRE EMPIEZA EN EFECTO
+function irALogin(){ document.getElementById("pantalla-efecto").style.display="none"; document.getElementById("pantalla-app").style.display="block"; document.body.style.overflow="auto"; 
+  let usuario=JSON.parse(localStorage.getItem("usuario-lights")||"null"); if(usuario){ mostrarBienvenida(); } }
+function verEfectoDeNuevo(){ document.getElementById("pantalla-app").style.display="none"; document.getElementById("pantalla-efecto").style.display="block"; document.body.style.overflow="hidden"; }
+let codigoReal=""; let usuario=JSON.parse(localStorage.getItem("usuario-lights")||"null");
+function mostrarBienvenida(){ document.getElementById("login-pantalla").style.display="none"; document.getElementById("bienvenida").style.display="block"; document.getElementById("tienda").style.display="none"; document.getElementById("saludo").innerText="Hola "+usuario.nombre+" ✅"; }
+function mostrarTienda(){ document.getElementById("bienvenida").style.display="none"; document.getElementById("tienda").style.display="block"; }
+function volverBienvenida(){ mostrarBienvenida(); }
+function abrirLogin(){ if(usuario){ mostrarBienvenida(); return; } document.getElementById("modal").classList.add("open"); }
+function cerrarLogin(){ document.getElementById("modal").classList.remove("open"); }
+function cerrarSesion(){ localStorage.removeItem("usuario-lights"); location.reload(); }
+function enviarCodigo(){
+  let nombre=document.getElementById("nombre").value.trim(); let gmail=document.getElementById("gmail").value.trim();
+  if(!nombre || !gmail.includes("@")){ alert("Pon tu nombre y un Gmail válido"); return; }
+  codigoReal=Math.floor(100000+Math.random()*900000).toString();
+  let btn=document.getElementById("btn-enviar"); btn.innerText="ENVIANDO..."; btn.disabled=true;
+  emailjs.send(SERVICE_ID, TEMPLATE_ID, { passcode: codigoReal, time: "15", email: gmail, to_name: nombre }, PUBLIC_KEY).then(function(){
+    document.getElementById("codigo-box").style.display="block"; document.getElementById("codigo-demo").innerText="Revisa tu Gmail 📩"; btn.innerText="REENVIAR CÓDIGO"; btn.disabled=false;
+  }, function(err){ alert("Error: "+(err.text||JSON.stringify(err))); btn.innerText="ENVIAR CÓDIGO"; btn.disabled=false; });
 }
-function ver(id){
-  let p = productos.find(x=>x.id===id);
-  document.getElementById("lista").style.display="none";
-  document.querySelector(".controls").style.display="none";
-  let d = document.getElementById("detalle-box");
-  d.style.display="block";
-  document.getElementById("detalle-content").innerHTML = `
-    <img src="${p.foto}">
-    <div>
-      <div style="color:#e60000;font-weight:bold;letter-spacing:1px;font-size:12px">${p.marca}</div>
-      <h2 style="font-size:28px;margin:6px 0">${p.nombre}</h2>
-      <div style="color:#ffc107">★★★★★ ${p.rating}</div>
-      <p style="color:#bbb;margin:10px 0;line-height:1.6">${p.desc}</p>
-      <ul>
-        <li><b>Marca:</b> ${p.marca}</li>
-        <li><b>Olor:</b> ${p.olor}</li>
-        <li><b>Calidad:</b> ${p.calidad} (Réplica Premium)</li>
-        <li><b>Contenido:</b> ${p.ml} / 3.4 FL.OZ.</li>
-        <li><b>Tipo:</b> Eau de Parfum</li>
-        <li><b>Duración:</b> 8 a 10 horas aprox.</li>
-        <li><b>Para:</b> Hombre y Mujer (Unisex)</li>
-        <li><b>Precio:</b> <span style="color:#00ff88;font-weight:bold">$${p.precio} MXN</span> <del style="color:#888">$${p.precioAntes}</del></li>
-      </ul>
-      <button class="btn-add" style="width:100%;padding:14px;font-size:16px" onclick="agregar('${p.id}');abrirCarrito()">🛒 AGREGAR AL CARRITO - $${p.precio}</button>
-    </div>`;
-  window.scrollTo(0,0);
+function verificar(){
+  let puesto=document.getElementById("codigo-input").value.trim();
+  if(puesto===codigoReal){
+    let nombre=document.getElementById("nombre").value.trim(); let gmail=document.getElementById("gmail").value.trim();
+    usuario={nombre,gmail}; localStorage.setItem("usuario-lights", JSON.stringify(usuario));
+    cerrarLogin(); mostrarBienvenida(); alert("¡Listo "+nombre+"! Ahora dale a IR A TIENDA 🛒");
+  } else { document.getElementById("error").style.display="block"; }
 }
-function cerrarDetalle(){
-  document.getElementById("detalle-box").style.display="none";
-  document.getElementById("lista").style.display="grid";
-  document.querySelector(".controls").style.display="flex";
-}
-function guardarCarrito(){ localStorage.setItem("carrito-lights", JSON.stringify(carrito)); renderCarrito(); }
-function agregar(id){
-  let item = carrito.find(x=>x.id===id);
-  if(item) item.cant++;
-  else { let p = productos.find(x=>x.id===id); carrito.push({...p, cant:1}); }
-  guardarCarrito();
-  document.getElementById("cart-count").innerText = carrito.reduce((s,x)=>s+x.cant,0);
-}
-function cambiarCant(id, delta){
-  let item = carrito.find(x=>x.id===id);
-  if(!item) return;
-  item.cant += delta;
-  if(item.cant<=0) carrito = carrito.filter(x=>x.id!==id);
-  guardarCarrito();
-}
-function quitar(id){ carrito = carrito.filter(x=>x.id!==id); guardarCarrito(); }
-function vaciar(){ carrito=[]; guardarCarrito(); }
-function renderCarrito(){
-  let total = carrito.reduce((s,x)=>s+x.precio*x.cant,0);
-  document.getElementById("cart-count").innerText = carrito.reduce((s,x)=>s+x.cant,0);
-  document.getElementById("cart-total").innerText = "$"+total+" MXN";
-  if(carrito.length===0){
-    document.getElementById("cart-items").innerHTML = `<div class="cart-empty">🛒<br>Tu carrito está vacío<br><small>Agrega un perfume para empezar</small></div>`;
-  } else {
-    document.getElementById("cart-items").innerHTML = carrito.map(x=>`
-      <div class="cart-item">
-        <img src="${x.foto}">
-        <div style="flex:1"><b>${x.nombre}</b><br><small>${x.olor} • $${x.precio} c/u</small>
-        <div class="qty"><button onclick="cambiarCant('${x.id}',-1)">-</button><b>${x.cant}</b><button onclick="cambiarCant('${x.id}',1)">+</button><span style="margin-left:auto;font-weight:bold">$${x.precio*x.cant}</span></div>
-        </div>
-        <button onclick="quitar('${x.id}')" style="background:none;border:none;color:#888;cursor:pointer;font-size:16px">✕</button>
-      </div>`).join("");
-  }
-  let mensaje = "Hola Lights Street, quiero pedir:\n\n" + carrito.map(x=>`• ${x.nombre} x${x.cant} - $${x.precio*x.cant}`).join("\n") + `\n\nTotal: $${total} MXN`;
-  document.getElementById("btn-wa").href = "https://wa.me/5219516129431?text=" + encodeURIComponent(mensaje);
-}
-function abrirCarrito(){ document.getElementById("carrito").classList.add("open"); document.getElementById("overlay").style.display="block"; }
-function cerrarCarrito(){ document.getElementById("carrito").classList.remove("open"); document.getElementById("overlay").style.display="none"; }
-render(); renderCarrito();
 </script>
 </body>
 </html>
