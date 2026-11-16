@@ -8,23 +8,15 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
 body{background:#0a0a0a;color:#fff}
 a{color:#fff;text-decoration:none}
-
-/* TOP BAR */
 .topbar{background:#e60000;text-align:center;padding:8px;font-size:13px;font-weight:bold;letter-spacing:1px}
 .topbar span{color:#ffe600}
-
-/* HEADER */
 header{position:sticky;top:0;z-index:50;background:rgba(10,10,10,.95);backdrop-filter:blur(10px);border-bottom:1px solid #222;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;max-width:1100px;margin:auto}
 .logo{display:flex;align-items:center;gap:12px}
 .logo img{width:48px;height:48px;object-fit:cover;border-radius:12px;border:2px solid #e60000}
 .logo h1{font-size:22px;letter-spacing:2px;line-height:1} .logo h1 span{color:#e60000}
 .logo small{color:#aaa;font-size:11px;letter-spacing:1px}
-.header-btns{display:flex;gap:10px;align-items:center}
-.btn-admin{border:1px solid #333;padding:9px 14px;border-radius:999px;font-size:13px}
 .btn-cart{background:#e60000;border:none;color:#fff;padding:10px 16px;border-radius:999px;font-weight:bold;cursor:pointer;position:relative}
 .btn-cart span{background:#fff;color:#000;font-size:12px;padding:2px 7px;border-radius:999px;margin-left:5px}
-
-/* HERO */
 .hero{max-width:1100px;margin:20px auto;padding:0 20px;display:flex;gap:20px;align-items:center;background:linear-gradient(135deg,#1a0000,#111);border:1px solid #2a2a2a;border-radius:20px;overflow:hidden}
 .hero-text{padding:28px;flex:1}
 .hero-text .badge{background:#e60000;padding:5px 10px;border-radius:999px;font-size:11px;font-weight:bold;letter-spacing:1px}
@@ -33,14 +25,10 @@ header{position:sticky;top:0;z-index:50;background:rgba(10,10,10,.95);backdrop-f
 .hero-stats{display:flex;gap:18px;margin-top:16px} .hero-stats b{font-size:18px} .hero-stats small{color:#888;display:block}
 .hero img{width:340px;height:260px;object-fit:cover}
 @media(max-width:750px){.hero{flex-direction:column}.hero img{width:100%;height:220px}}
-
-/* CONTROLS */
 .controls{max-width:1100px;margin:20px auto;padding:0 20px;display:flex;gap:10px;flex-wrap:wrap}
 .controls input{flex:1;min-width:200px;padding:13px;border-radius:999px;border:1px solid #333;background:#151515;color:#fff;outline:none}
 .controls select{padding:13px;border-radius:999px;border:1px solid #333;background:#151515;color:#fff}
 .controls .count{padding:13px;color:#aaa;font-size:13px}
-
-/* GRID */
 .grid{max-width:1100px;margin:0 auto;padding:0 20px 30px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
 @media(max-width:650px){.grid{grid-template-columns:1fr}}
 .card{background:#131313;border:1px solid #262626;border-radius:20px;overflow:hidden;transition:.2s;cursor:pointer}
@@ -58,8 +46,6 @@ header{position:sticky;top:0;z-index:50;background:rgba(10,10,10,.95);backdrop-f
 .btns{display:flex;gap:8px;margin-top:12px}
 .btn-ver{flex:1;background:#222;color:#fff;border:none;padding:11px;border-radius:12px;cursor:pointer;font-weight:bold}
 .btn-add{flex:1.3;background:#e60000;color:#fff;border:none;padding:11px;border-radius:12px;cursor:pointer;font-weight:bold}
-
-/* DETALLE */
 .detalle{display:none;max-width:900px;margin:0 auto 30px;padding:0 20px}
 .detalle-box{background:#131313;border:2px solid #e60000;border-radius:20px;padding:20px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
 @media(max-width:650px){.detalle-box{grid-template-columns:1fr}}
@@ -67,8 +53,6 @@ header{position:sticky;top:0;z-index:50;background:rgba(10,10,10,.95);backdrop-f
 .detalle-box ul{list-style:none;margin:14px 0;line-height:2;color:#ddd;font-size:14px}
 .detalle-box ul b{color:#fff}
 .volver{background:#333;color:#fff;border:none;padding:10px 16px;border-radius:999px;cursor:pointer;margin-bottom:12px}
-
-/* CARRITO */
 .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:90}
 .carrito{position:fixed;top:0;right:-100%;width:100%;max-width:400px;height:100vh;background:#111;z-index:100;transition:.3s;display:flex;flex-direction:column;border-left:2px solid #e60000}
 .carrito.open{right:0}
@@ -84,8 +68,6 @@ header{position:sticky;top:0;z-index:50;background:rgba(10,10,10,.95);backdrop-f
 .total{display:flex;justify-content:space-between;font-size:18px;font-weight:bold;margin-bottom:12px}
 .btn-wa{display:block;text-align:center;background:#25D366;color:#000;padding:14px;border-radius:12px;font-weight:bold}
 .btn-vaciar{display:block;text-align:center;background:transparent;color:#ff5555;padding:10px;margin-top:8px;cursor:pointer;border:none;width:100%}
-
-/* FOOTER */
 footer{max-width:1100px;margin:0 auto 30px;padding:20px;background:#111;border-radius:18px;text-align:center;line-height:2}
 footer b{color:#e60000}
 footer a{color:#fff}
@@ -102,8 +84,7 @@ footer a{color:#fff}
     <img src="https://files.catbox.moe/bef0di.jpeg">
     <div><h1>LIGHTS <span>STREET</span></h1><small>PERFUMES PREMIUM</small></div>
   </a>
-  <div class="header-btns">
-    <a class="btn-admin" href="index.html">Admin</a>
+  <div>
     <button class="btn-cart" onclick="abrirCarrito()">🛒 Carrito <span id="cart-count">0</span></button>
   </div>
 </header>
@@ -152,7 +133,6 @@ footer a{color:#fff}
   <div class="badges"><span>✅ Calidad 1.1</span><span>🚚 Entrega rápida</span><span>💬 Pedido por WhatsApp</span></div>
 </footer>
 
-<!-- CARRITO -->
 <div class="overlay" id="overlay" onclick="cerrarCarrito()"></div>
 <div class="carrito" id="carrito">
   <div class="carrito-head"><h3>🛒 Tu carrito</h3><button onclick="cerrarCarrito()">✕</button></div>
@@ -165,16 +145,12 @@ footer a{color:#fff}
 </div>
 
 <script>
-// PRECIOS - vienen del login (index.html) sin servidor
 let precios = JSON.parse(localStorage.getItem("precios-lights") || '{"santal":650,"art":650}');
-
 let productos = [
   {id:"santal", marca:"LE LABO", nombre:"Santal 33", olor:"Fresco", calidad:"1.1", ml:"100ml", foto:"https://files.catbox.moe/k42so9.jpeg", desc:"Elegante, limpio y fresco. El perfume que huele a lujo, ideal para diario y para salir.", etiqueta:"MÁS VENDIDO", precio:precios.santal, precioAntes:950, rating:"★★★★★ (128)"},
   {id:"art", marca:"LATTAFA PRIDE", nombre:"Art of Universe", olor:"Dulce, fresco", calidad:"1.1", ml:"100ml", foto:"https://files.catbox.moe/kagqgg.jpeg", desc:"Dulce y fresco, con presentación de lujo en caja azul. Huele caro, dura todo el día.", etiqueta:"NUEVO", precio:precios.art, precioAntes:950, rating:"★★★★★ (96)"}
 ];
-
 let carrito = JSON.parse(localStorage.getItem("carrito-lights") || "[]");
-
 function render(){
   let q = document.getElementById("buscar").value.toLowerCase();
   let f = document.getElementById("filtro").value;
@@ -186,7 +162,6 @@ function render(){
   });
   if(o==="menor") lista.sort((a,b)=>a.precio-b.precio);
   if(o==="mayor") lista.sort((a,b)=>b.precio-a.precio);
-
   document.getElementById("count").innerText = lista.length + " productos";
   document.getElementById("lista").innerHTML = lista.map(p=>`
     <div class="card">
@@ -207,7 +182,6 @@ function render(){
       </div>
     </div>`).join("");
 }
-
 function ver(id){
   let p = productos.find(x=>x.id===id);
   document.getElementById("lista").style.display="none";
@@ -240,15 +214,12 @@ function cerrarDetalle(){
   document.getElementById("lista").style.display="grid";
   document.querySelector(".controls").style.display="flex";
 }
-
-// CARRITO
 function guardarCarrito(){ localStorage.setItem("carrito-lights", JSON.stringify(carrito)); renderCarrito(); }
 function agregar(id){
   let item = carrito.find(x=>x.id===id);
   if(item) item.cant++;
   else { let p = productos.find(x=>x.id===id); carrito.push({...p, cant:1}); }
   guardarCarrito();
-  // animación chiquita en el botón
   document.getElementById("cart-count").innerText = carrito.reduce((s,x)=>s+x.cant,0);
 }
 function cambiarCant(id, delta){
@@ -260,7 +231,6 @@ function cambiarCant(id, delta){
 }
 function quitar(id){ carrito = carrito.filter(x=>x.id!==id); guardarCarrito(); }
 function vaciar(){ carrito=[]; guardarCarrito(); }
-
 function renderCarrito(){
   let total = carrito.reduce((s,x)=>s+x.precio*x.cant,0);
   document.getElementById("cart-count").innerText = carrito.reduce((s,x)=>s+x.cant,0);
@@ -280,10 +250,8 @@ function renderCarrito(){
   let mensaje = "Hola Lights Street, quiero pedir:\n\n" + carrito.map(x=>`• ${x.nombre} x${x.cant} - $${x.precio*x.cant}`).join("\n") + `\n\nTotal: $${total} MXN`;
   document.getElementById("btn-wa").href = "https://wa.me/5219516129431?text=" + encodeURIComponent(mensaje);
 }
-
 function abrirCarrito(){ document.getElementById("carrito").classList.add("open"); document.getElementById("overlay").style.display="block"; }
 function cerrarCarrito(){ document.getElementById("carrito").classList.remove("open"); document.getElementById("overlay").style.display="none"; }
-
 render(); renderCarrito();
 </script>
 </body>
