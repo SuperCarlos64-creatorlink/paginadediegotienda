@@ -249,7 +249,7 @@ async function enviarCodigo(){
       const nombreRef = window.firebaseDoc(window.firebaseDB, "nombres", nombre.toLowerCase());
       const snapNombre = await window.firebaseGetDoc(nombreRef);
       if(snapNombre.exists() && snapNombre.data().correo !== gmail){
-        alert("Ese nombre ya está ocupado por otro correo: " + snapNombre.data().correo + "\nSi eres tú, pon ese mismo correo para entrar.");
+        alert("Ese nombre ya está ocupado por otro correo");
         return;
       }
       const correoRef = window.firebaseDoc(window.firebaseDB, "usuarios", gmail);
