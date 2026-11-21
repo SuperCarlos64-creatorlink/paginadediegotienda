@@ -193,6 +193,29 @@ button{cursor:pointer}
   </div>
 </div>
 
+<!-- ===== SOLO ESTO SE AGREGÓ: FIREBASE ===== -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
+  import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
+  const firebaseConfig = {
+    apiKey: "AIzaSyBhnVcTtDLElcJduVcmVxXwAvuW8KJ6B8A",
+    authDomain: "lights-streeth.firebaseapp.com",
+    projectId: "lights-streeth",
+    storageBucket: "lights-streeth.firebasestorage.app",
+    messagingSenderId: "63254119432",
+    appId: "1:63254119432:web:ad00385831709aba5abdbd",
+    measurementId: "G-4W42JKM3G0"
+  };
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  // Lo dejamos global para que tu script normal lo use
+  window.firebaseDB = db;
+  window.firebaseDoc = doc;
+  window.firebaseGetDoc = getDoc;
+  window.firebaseSetDoc = setDoc;
+  console.log("Firebase conectado: lights-streeth ✅");
+</script>
+
 <script>
 const PUBLIC_KEY = "wJc4g7wLZb6LkC10Z";
 const SERVICE_ID = "service_Lightsstreet";
@@ -214,23 +237,55 @@ function volverBienvenida(){ mostrarBienvenida(); }
 function abrirLogin(){ if(usuario){ mostrarBienvenida(); return; } document.getElementById("modal").classList.add("open"); }
 function cerrarLogin(){ document.getElementById("modal").classList.remove("open"); }
 function cerrarSesion(){ localStorage.removeItem("usuario-lights"); location.reload(); }
-function enviarCodigo(){
+
+// ===== SOLO ESTA FUNCIÓN CAMBIÓ: AHORA CHECA NOMBRE EN FIREBASE =====
+async function enviarCodigo(){
   let nombre=document.getElementById("nombre").value.trim(); let gmail=document.getElementById("gmail").value.trim();
   if(!nombre || !gmail.includes("@")){ alert("Pon tu nombre y un Gmail válido"); return; }
+
+  // Si ya hay un usuario guardado con ese gmail, es login, no checamos nombre
+  let usuarioGuardado = JSON.parse(localStorage.getItem("usuario-lights")||"null");
+  let esMismoUsuario = usuarioGuardado && usuarioGuardado.gmail === gmail;
+
+  // Checar en Firebase si el nombre ya está ocupado por OTRO gmail
+  try{
+    if(window.firebaseDB){
+      const nombreRef = window.firebaseDoc(window.firebaseDB, "nombres", nombre.toLowerCase());
+      const snap = await window.firebaseGetDoc(nombreRef);
+      if(snap.exists() && snap.data().correo !== gmail.toLowerCase() && !esMismoUsuario){
+        alert("Ese nombre ya está ocupado we, elige otro 🙏");
+        return;
+      }
+    }
+  }catch(e){ console.log("Firebase nombres:", e); }
+
   codigoReal=Math.floor(100000+Math.random()*900000).toString();
   let btn=document.getElementById("btn-enviar"); btn.innerText="ENVIANDO..."; btn.disabled=true;
   emailjs.send(SERVICE_ID, TEMPLATE_ID, { passcode: codigoReal, time: "15", email: gmail, to_name: nombre }, PUBLIC_KEY).then(function(){
     document.getElementById("codigo-box").style.display="block"; document.getElementById("codigo-demo").innerText="Revisa tu Gmail 📩"; btn.innerText="REENVIAR CÓDIGO"; btn.disabled=false;
   }, function(err){ alert("Error: "+(err.text||JSON.stringify(err))); btn.innerText="ENVIAR CÓDIGO"; btn.disabled=false; });
 }
-function verificar(){
+
+// ===== SOLO ESTA FUNCIÓN CAMBIÓ: AHORA GUARDA EN FIREBASE =====
+async function verificar(){
   let puesto=document.getElementById("codigo-input").value.trim();
   if(puesto===codigoReal){
     let nombre=document.getElementById("nombre").value.trim(); let gmail=document.getElementById("gmail").value.trim();
     usuario={nombre,gmail}; localStorage.setItem("usuario-lights", JSON.stringify(usuario));
+
+    // Guardar en Firebase - usuarios y nombres
+    try{
+      if(window.firebaseDB){
+        await window.firebaseSetDoc(window.firebaseDoc(window.firebaseDB, "usuarios", gmail.toLowerCase()), { nombre, correo: gmail.toLowerCase(), fecha: new Date().toISOString() });
+        await window.firebaseSetDoc(window.firebaseDoc(window.firebaseDB, "nombres", nombre.toLowerCase()), { correo: gmail.toLowerCase(), fecha: new Date().toISOString() });
+        console.log("Guardado en Firebase ✅");
+      }
+    }catch(e){ console.log("Error Firebase guardar:", e); }
+
     cerrarLogin(); mostrarBienvenida(); alert("¡Listo "+nombre+"! Ahora dale a IR A TIENDA 🛒");
   } else { document.getElementById("error").style.display="block"; }
 }
+
 let carrito = JSON.parse(localStorage.getItem("carrito-lights")||"[]");
 function guardarCarrito(){ localStorage.setItem("carrito-lights", JSON.stringify(carrito)); }
 function agregarCarrito(nombre, precio){
